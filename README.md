@@ -1006,6 +1006,7 @@ siege -c200 -t120S -r10 -v --content-type "application/json" 'http://40.82.137.3
 
 kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage:51 -o json
 ```
+![image](https://user-images.githubusercontent.com/20619166/98300235-57314b00-1ffc-11eb-9a67-5b6fc6f037e4.png)
 
 ```
 - Readiness 적용
@@ -1015,6 +1016,7 @@ siege -c1 -t30S -v --content-type "application/json" 'http://20.196.153.111:8080
 
 kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage:51 -o json
 ```
+![image](https://user-images.githubusercontent.com/20619166/98300242-5a2c3b80-1ffc-11eb-943b-1460992cfad2.png)
 
 ## Autoscale
 ```
