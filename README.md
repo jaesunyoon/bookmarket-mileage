@@ -904,6 +904,13 @@ http http://localhost:8083/deliveries
 ```
 ![image](https://user-images.githubusercontent.com/20619166/98269829-91d1be00-1fd1-11eb-9b07-f412c23168f7.png)
 
+## polyglot
+```
+mileage 서비스에는 H2 DB 대신 HSQLDB를 사용하기로 하였다. 이를 위해 메이븐 설정(pom.xml)상 DB 정보를 HSQLDB를 사용하도록 변경하였다.
+```
+![image](https://user-images.githubusercontent.com/20619166/98278614-30631c80-1fdc-11eb-986c-6f6873635c32.png)
+![image](https://user-images.githubusercontent.com/20619166/98278670-4670dd00-1fdc-11eb-98f5-9fc682a54244.png)
+
 ## 동기 호출
 ```
 Mileage 서비스를 중지 후 Mileage를 이용한 결제를 요청한
@@ -943,3 +950,33 @@ Delivery 서비스를 재기동 후 조회한다
 http http://localhost:8083/deliveries
 ```
 ![image](https://user-images.githubusercontent.com/20619166/98277065-3e17a280-1fda-11eb-89e9-97a29fba2a94.png)
+
+## gateway
+```
+gateway 프로젝트 내 application.yml
+```
+![image](https://user-images.githubusercontent.com/20619166/98277782-16750a00-1fdb-11eb-9f7e-16aefda4f715.png)
+![image](https://user-images.githubusercontent.com/20619166/98277794-1aa12780-1fdb-11eb-910f-62e0afd117c0.png)
+![image](https://user-images.githubusercontent.com/20619166/98277805-1e34ae80-1fdb-11eb-8317-2a9b6a9863d1.png)
+
+## CI/CD
+```
+각 구현체들은 각자의 source repository 에 구성되었고, Azure Pipelines 으로 CI/CD 를 구성하였으며, 구성은 아래와 같다. Github 소스 변경이 감지되면, CI 후 trigger 에 의해 CD까지 자동으로 이루어진다.
+```
+![image](https://user-images.githubusercontent.com/20619166/98278231-a6b34f00-1fdb-11eb-89b8-0b52ea6c6165.png)
+![image](https://user-images.githubusercontent.com/20619166/98278242-aa46d600-1fdb-11eb-831e-81741e215423.png)
+
+## Config Map
+```
+#configmap.yml 내 mileage 관련 URL 추가
+ 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apipayurl
+data:
+  url:  http://payment:8088
+  mileurl: http://mileage:8088
+```
+
+
