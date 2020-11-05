@@ -15,6 +15,7 @@ public class Mileage {
     private Long mileage;
     private String status;
     private Long customerId;
+    private String isMile;
 
     @PostPersist
     public void onPostPersist(){
@@ -22,14 +23,14 @@ public class Mileage {
         BeanUtils.copyProperties(this, mileageUsed);
         mileageUsed.publishAfterCommit();
 
+    }
 
+    @PreUpdate
+    public void onPreUpdate(){
         UseCanceled useCanceled = new UseCanceled();
         BeanUtils.copyProperties(this, useCanceled);
         useCanceled.publishAfterCommit();
-
-
     }
-
 
     public Long getId() {
         return id;
@@ -68,6 +69,11 @@ public class Mileage {
     }
 
 
+    public String getIsMile() {
+        return isMile;
+    }
 
-
+    public void setIsMile(String isMile) {
+        this.isMile = isMile;
+    }
 }

@@ -8,6 +8,7 @@ public class UseCanceled extends AbstractEvent {
     private Long mileage;
     private String status;
     private Long customerId;
+    private String isMile;
 
     public Long getId() {
         return id;
@@ -43,5 +44,13 @@ public class UseCanceled extends AbstractEvent {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public String getIsMile() {
+        return isMile;
+    }
+
+    public void setIsMile(String isMile) {
+        this.isMile = isMile;
     }
 }

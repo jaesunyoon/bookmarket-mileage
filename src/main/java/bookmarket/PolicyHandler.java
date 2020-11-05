@@ -8,6 +8,8 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PolicyHandler{
     @StreamListener(KafkaProcessor.INPUT)
@@ -15,25 +17,51 @@ public class PolicyHandler{
 
     }
 
+    @Autowired
+    MileageRepository mileageRepository;
+
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverOrderCanceled_UseCancel(@Payload OrderCanceled orderCanceled){
 
-        if(orderCanceled.isMe()){
+        System.out.println("##### listener UseCancel : " + orderCanceled.toJson());
+        if(orderCanceled.isMe() && "OrderCanceled".equals(orderCanceled.getStatus())){
             System.out.println("##### listener UseCancel : " + orderCanceled.toJson());
+            List<Mileage> mileageList = mileageRepository.findByOrderId(orderCanceled.getId());
+            for(Mileage mileage : mileageList){
+                // view 객체에 이벤트의 eventDirectValue 를 set 함
+                mileage.setStatus("useMileageCanceled");
+                // view 레파지 토리에 save
+                mileageRepository.save(mileage);
+            }
         }
+
     }
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverShipped_UpdateMileage(@Payload Shipped shipped){
 
-        if(shipped.isMe()){
+        if(shipped.isMe() && "Shipped".equals(shipped.getStatus())){
             System.out.println("##### listener UpdateMileage : " + shipped.toJson());
+            List<Mileage> mileageList = mileageRepository.findByOrderId(shipped.getOrderId());
+            for(Mileage mileage : mileageList){
+                // view 객체에 이벤트의 eventDirectValue 를 set 함
+                mileage.setStatus("getMileage");
+                // view 레파지 토리에 save
+                mileageRepository.save(mileage);
+            }
         }
     }
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverDeliveryCanceled_UpdateMileage(@Payload DeliveryCanceled deliveryCanceled){
 
-        if(deliveryCanceled.isMe()){
+        if(deliveryCanceled.isMe() && "ShipCanceled".equals(deliveryCanceled.getStatus())){
             System.out.println("##### listener UpdateMileage : " + deliveryCanceled.toJson());
+            List<Mileage> mileageList = mileageRepository.findByOrderId(deliveryCanceled.getOrderId());
+            for(Mileage mileage : mileageList){
+                // view 객체에 이벤트의 eventDirectValue 를 set 함
+                mileage.setStatus("getMileageCanceled");
+                // view 레파지 토리에 save
+                mileageRepository.save(mileage);
+            }
         }
     }
 
