@@ -1000,7 +1000,7 @@ gateway 프로젝트 내 application.yml
 ## 무정지 재배포(Readiness)
 ```
 - Readiness 적용 전
-- seige로 수행 중 다른 터미널에서 다른 버전으로 배포함
+- seige로 수행 중 다른 터미널에서 배포 작업 수행
 
 siege -c100 -t120S -r10 -v --content-type "application/json" 'http://40.82.137.39:8080/mileages POST {"orderId": "10", "qty": "1", "customerId": "1002"}'
 
@@ -1008,12 +1008,12 @@ kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage
 ```
 
 ```
-- Readiness 적용 후
-- seige로 수행 중 다른 터미널에서 다른 버전으로 배포함
+- Readiness 적용
+- seige로 수행 중 다른 터미널에서 배포 작업 수행
 
 siege -c100 -t120S -r10 -v --content-type "application/json" 'http://40.82.137.39:8080/mileages POST {"orderId": "10", "qty": "1", "customerId": "1002"}'
 
-kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage:52 -o json
+kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage:51 -o json
 ```
 
 
