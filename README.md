@@ -968,15 +968,35 @@ gateway 프로젝트 내 application.yml
 
 ## Config Map
 ```
-#configmap.yml 내 mileage 관련 URL 추가
- 
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: apipayurl
-data:
-  url:  http://payment:8088
-  mileurl: http://mileage:8088
+#configmap.yml 
 ```
+![image](http://user-images.githubusercontent.com/20619166/98282313-6525a280-1fe1-11eb-8cba-51095c955634.png)
+
+```
+#deployment.yml 
+```
+![image](https://user-images.githubusercontent.com/20619166/98282319-68b92980-1fe1-11eb-89e2-a7120643b281.png)
+
+```
+#application.yml 
+```
+![image](https://user-images.githubusercontent.com/20619166/98282329-6bb41a00-1fe1-11eb-9983-52045a1bb590.png)
+
+```
+#MileageService.java 
+```
+![image](https://user-images.githubusercontent.com/20619166/98282343-6fe03780-1fe1-11eb-9105-5bf5013e9bae.png)
+
+```
+#정상 호출됨
+```
+![image](https://user-images.githubusercontent.com/20619166/98282643-df562700-1fe1-11eb-9b7f-0068c7166a45.png)
+
+```
+#Port를 8088로 변경 후 호출되지 않음
+```
+![image](https://user-images.githubusercontent.com/20619166/98282664-e67d3500-1fe1-11eb-9082-949050d47819.png)
+
+
 
 
