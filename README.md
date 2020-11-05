@@ -997,6 +997,9 @@ gateway 프로젝트 내 application.yml
 ```
 ![image](https://user-images.githubusercontent.com/20619166/98282664-e67d3500-1fe1-11eb-9082-949050d47819.png)
 
-
+## 무정지 재배포(Readiness)
+```
+#configmap.yml 
+```
 
 
