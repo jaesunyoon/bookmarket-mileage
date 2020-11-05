@@ -1016,4 +1016,21 @@ siege -c5 -t30S -v --content-type "application/json" 'http://40.82.137.39:8080/m
 kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage:51 -o json
 ```
 
+## Autoscale
+```
+# deployment.yml 에 적용
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+```
+kubectl autoscale deploy payment --min=1 --max=10 --cpu-percent=15
+
+siege -c200 -t120S -r10 -v --content-type "application/json" 'http://20.196.153.111:8080/orders POST {"bookId": "10", "qty": "1", "customerId": "1002", "isMile": "Y"}'
+
+![image](https://user-images.githubusercontent.com/20619166/98293408-97d79700-1ff1-11eb-8bbc-cfd5defdebc3.png)
+
+
+
 
