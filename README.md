@@ -904,7 +904,7 @@ http http://localhost:8083/deliveries
 ```
 ![image](https://user-images.githubusercontent.com/20619166/98269829-91d1be00-1fd1-11eb-9b07-f412c23168f7.png)
 
-## 동기식 호출
+## 동기 호출
 ```
 Mileage 서비스를 중지 후 Mileage를 이용한 결제를 요청한
 http http://localhost:8081/orders bookId=1 qty=10 customerId=1001 isMile=Y
@@ -913,9 +913,33 @@ http http://localhost:8081/orders bookId=1 qty=10 customerId=1001 isMile=Y
 
 
 ```
-Mileage 서비스를 재시작 후 Mileage를 이용한 결제를 요청한
+Mileage 서비스를 재시작 후 Mileage를 이용한 결제를 요청한다
 http http://localhost:8081/orders bookId=1 qty=10 customerId=1001 isMile=Y
 ```
-![image](https://user-images.githubusercontent.com/20619166/98269808-8d0d0a00-1fd1-11eb-8e55-0e193868eceb.png)
 ![image](https://user-images.githubusercontent.com/20619166/98269823-90a09100-1fd1-11eb-986e-df2a14511926.png)
 
+## CQRS
+```
+mypage를 조회한다.
+http http://localhost:8084/mypages
+```
+![image](https://user-images.githubusercontent.com/20619166/98277028-30fab380-1fda-11eb-9ec4-2068e6e183d7.png)
+
+## 비동기 호출
+```
+Delivery 서비스를 중지 후 Mileage를 이용한 결제를 요청한다
+http http://localhost:8081/orders/1 bookId=1 qty=10 customerId=1001 isMile=Y
+```
+![image](https://user-images.githubusercontent.com/20619166/98277042-3526d100-1fda-11eb-8022-393370c2eb9f.png)
+
+```
+Mileage 서비스를 조회한다 
+http http://localhost:8085/mileages
+```
+![image](https://user-images.githubusercontent.com/20619166/98277050-39eb8500-1fda-11eb-9e06-21cfca5f3557.png)
+
+```
+Delivery 서비스를 재기동 후 조회한다 
+http http://localhost:8083/deliveries
+```
+![image](https://user-images.githubusercontent.com/20619166/98277065-3e17a280-1fda-11eb-89e9-97a29fba2a94.png)
