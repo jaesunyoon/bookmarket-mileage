@@ -1065,10 +1065,11 @@ siege -c100 -t120S -r10 -v --content-type "application/json" 'http://20.196.153.
 
 ## Liveness Probe
 ```
-# deployment.yml 에 적용
-          resources:
-            limits:
-              cpu: 500m
-            requests:
-              cpu: 200m
+# mileage 서비스의 deployment.yml 내 liveness설정을 tcp socket 방식의 8081 port를 바라보도록 변경하여 확인한다.
 ```
+![image](https://user-images.githubusercontent.com/20619166/98298892-1afceb00-1ffa-11eb-81eb-1e518667b350.png)
+
+![image](https://user-images.githubusercontent.com/20619166/98298903-1e907200-1ffa-11eb-963e-492eca0e82a2.png)
+
+![image](https://user-images.githubusercontent.com/20619166/98298907-20f2cc00-1ffa-11eb-97eb-ecc3261bdb2b.png)
+
