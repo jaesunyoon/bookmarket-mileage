@@ -6,6 +6,7 @@ public class Shipped extends AbstractEvent {
     private Long orderId;
     private Long customerId;
     private String status;
+    private String isMile;
 
     public Long getId() {
         return id;
@@ -34,5 +35,13 @@ public class Shipped extends AbstractEvent {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getIsMile() {
+        return isMile;
+    }
+
+    public void setIsMile(String isMile) {
+        this.isMile = isMile;
     }
 }

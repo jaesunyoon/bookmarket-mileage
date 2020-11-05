@@ -39,7 +39,7 @@ public class PolicyHandler{
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverShipped_UpdateMileage(@Payload Shipped shipped){
 
-        if(shipped.isMe() && "Shipped".equals(shipped.getStatus())){
+        if(shipped.isMe() && "Shipped".equals(shipped.getStatus()) && "N".equals(shipped.getIsMile())){
             System.out.println("##### listener UpdateMileage : " + shipped.toJson());
             List<Mileage> mileageList = mileageRepository.findByOrderId(shipped.getOrderId());
             for(Mileage mileage : mileageList){
@@ -53,7 +53,7 @@ public class PolicyHandler{
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverDeliveryCanceled_UpdateMileage(@Payload DeliveryCanceled deliveryCanceled){
 
-        if(deliveryCanceled.isMe() && "ShipCanceled".equals(deliveryCanceled.getStatus())){
+        if(deliveryCanceled.isMe() && "ShipCanceled".equals(deliveryCanceled.getStatus())&& "N".equals(deliveryCanceled.getIsMile())){
             System.out.println("##### listener UpdateMileage : " + deliveryCanceled.toJson());
             List<Mileage> mileageList = mileageRepository.findByOrderId(deliveryCanceled.getOrderId());
             for(Mileage mileage : mileageList){

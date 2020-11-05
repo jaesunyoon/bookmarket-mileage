@@ -6,6 +6,15 @@ public class DeliveryCanceled extends AbstractEvent {
     private Long orderId;
     private Long customerId;
     private String status;
+    private String isMile;
+
+    public String getIsMile() {
+        return isMile;
+    }
+
+    public void setIsMile(String isMile) {
+        this.isMile = isMile;
+    }
 
     public Long getId() {
         return id;
