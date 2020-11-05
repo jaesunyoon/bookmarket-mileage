@@ -1011,7 +1011,7 @@ kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage
 - Readiness 적용
 - seige로 수행 중 다른 터미널에서 배포 작업 수행
 
-siege -c5 -t30S -v --content-type "application/json" 'http://40.82.137.39:8080/mileages POST {"orderId": "10", "qty": "1", "customerId": "1002"}'
+siege -c1 -t30S -v --content-type "application/json" 'http://20.196.153.111:8080/orders POST {"bookId": "10", "qty": "1", "customerId": "1002", "isMile": "Y"}'
 
 kubectl set -n books image deployment/mileage mileage=admin25.azurecr.io/mileage:51 -o json
 ```
