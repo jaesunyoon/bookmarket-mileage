@@ -886,3 +886,36 @@ public interface MileageRepository extends PagingAndSortingRepository<Mileage, L
 }
 ```
 - 적용 후 REST API의 테스트
+```
+Order 서비스에서 Mileage를 이용한 결제를 요청한다
+http http://localhost:8081/orders bookId=1 qty=10 customerId=1001 isMile=Y
+```
+![image](https://user-images.githubusercontent.com/20619166/98269784-85e5fc00-1fd1-11eb-9618-4ec2f2e422eb.png)
+
+```
+Mileage 서비스에서 해당 건을 조회한다.
+http http://localhost:8085/mileages
+```
+![image](https://user-images.githubusercontent.com/20619166/98269819-8f6f6400-1fd1-11eb-8d67-1d6f5b00441b.png)
+
+```
+Delivery 서비스에서 해당 건을 조회한다.
+http http://localhost:8083/deliveries
+```
+![image](https://user-images.githubusercontent.com/20619166/98269829-91d1be00-1fd1-11eb-9b07-f412c23168f7.png)
+
+## 동기식 호출
+```
+Mileage 서비스를 중지 후 Mileage를 이용한 결제를 요청한
+http http://localhost:8081/orders bookId=1 qty=10 customerId=1001 isMile=Y
+```
+![image](https://user-images.githubusercontent.com/20619166/98269828-91392780-1fd1-11eb-82db-51f4f1e79123.png)
+
+
+```
+Mileage 서비스를 재시작 후 Mileage를 이용한 결제를 요청한
+http http://localhost:8081/orders bookId=1 qty=10 customerId=1001 isMile=Y
+```
+![image](https://user-images.githubusercontent.com/20619166/98269808-8d0d0a00-1fd1-11eb-8e55-0e193868eceb.png)
+![image](https://user-images.githubusercontent.com/20619166/98269823-90a09100-1fd1-11eb-986e-df2a14511926.png)
+
