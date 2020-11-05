@@ -957,7 +957,8 @@ gateway 프로젝트 내 application.yml
 ```
 ![image](https://user-images.githubusercontent.com/20619166/98277782-16750a00-1fdb-11eb-9f7e-16aefda4f715.png)
 ![image](https://user-images.githubusercontent.com/20619166/98277794-1aa12780-1fdb-11eb-910f-62e0afd117c0.png)
-![image](https://user-images.githubusercontent.com/20619166/98277805-1e34ae80-1fdb-11eb-8317-2a9b6a9863d1.png)
+
+![image](https://user-images.githubusercontent.com/20619166/98300558-c870fe00-1ffc-11eb-892a-ca553d87e1e9.png)
 
 ## CI/CD
 ```
