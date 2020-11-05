@@ -1,14 +1,14 @@
 server:
   port: 8080
-#feign:
-#  hystrix:
-#    enabled: true
+feign:
+  hystrix:
+    enabled: true
 
-#hystrix:
-#  command:
+hystrix:
+  command:
     # 전역설정
-#    default:
-#      execution.isolation.thread.timeoutInMilliseconds: 610
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 610
 
 ---
 
