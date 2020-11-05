@@ -1032,5 +1032,43 @@ siege -c200 -t120S -r10 -v --content-type "application/json" 'http://20.196.153.
 ![image](https://user-images.githubusercontent.com/20619166/98293408-97d79700-1ff1-11eb-8bbc-cfd5defdebc3.png)
 
 
+## Circuit Breaker
+```
+# application.yml에 적용
 
+feign:
+  hystrix:
+    enabled: true
+    
+hystrix:
+  command:
+    # 전역설정
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 610
+      
+# Order.java (Entity)
 
+    @PostPersist
+    public void onPostPersist(){
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+```
+
+siege -c100 -t120S -r10 -v --content-type "application/json" 'http://20.196.153.111:8080/orders POST {"bookId": "10", "qty": "1", "customerId": "1002", "isMile": "Y"}'
+
+![image](https://user-images.githubusercontent.com/20619166/98295861-77a9d700-1ff5-11eb-9f6c-e304ff7a50b5.png)
+![image](https://user-images.githubusercontent.com/20619166/98295872-7b3d5e00-1ff5-11eb-8ca8-c178fb99c9a2.png)
+
+## Liveness Probe
+```
+# deployment.yml 에 적용
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+```
