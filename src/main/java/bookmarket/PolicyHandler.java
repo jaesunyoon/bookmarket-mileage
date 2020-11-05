@@ -33,6 +33,7 @@ public class PolicyHandler{
                 // view 레파지 토리에 save
                 mileageRepository.save(mileage);
             }
+
         }
 
     }
@@ -41,13 +42,14 @@ public class PolicyHandler{
 
         if(shipped.isMe() && "Shipped".equals(shipped.getStatus()) && "N".equals(shipped.getIsMile())){
             System.out.println("##### listener UpdateMileage : " + shipped.toJson());
-            List<Mileage> mileageList = mileageRepository.findByOrderId(shipped.getOrderId());
-            for(Mileage mileage : mileageList){
-                // view 객체에 이벤트의 eventDirectValue 를 set 함
-                mileage.setStatus("getMileage");
-                // view 레파지 토리에 save
-                mileageRepository.save(mileage);
-            }
+
+            Mileage mileage = new Mileage();
+            mileage.setOrderId(shipped.getOrderId());
+            mileage.setCustomerId(shipped.getCustomerId());
+            mileage.setStatus("getMileage");
+            mileage.setIsMile("N");
+
+            mileageRepository.save(mileage);
         }
     }
     @StreamListener(KafkaProcessor.INPUT)
