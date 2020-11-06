@@ -791,7 +791,7 @@ transfer-encoding: chunked
 ![image](https://user-images.githubusercontent.com/20619166/98259858-f5ee8500-1fc5-11eb-8a02-4e98eb85b455.png)
 
 ## 헥사고날 아키텍처 변화
-![image](https://user-images.githubusercontent.com/20619166/98311941-f6ae0800-2013-11eb-9c3b-e842290fc8d3.png)
+![image](https://user-images.githubusercontent.com/20619166/98331410-dac05b80-203f-11eb-8265-f20444a9579e.png)
 
 
 ## DDD의 적용
